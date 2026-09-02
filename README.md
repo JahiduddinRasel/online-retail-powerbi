@@ -2,6 +2,9 @@ Online Retail Analytics — Executive Sales Dashboard (Power BI)
 
 An end-to-end Power BI business intelligence project analyzing multi-year transactional sales data (UCI Online Retail II). This project demonstrates a production-grade data pipeline: from raw folder-based ingestion (handling mixed formats and dynamic sheet names) to star-schema modeling, advanced DAX time-intelligence metrics, and an executive-level performance dashboard.
 
+![Dashboard Overview](assets/page1_overview.png)
+![Star Schema Model](assets/model_star_schema.png)
+
 ## 📊 Project Objective
 
 Provide retail executives and operations managers with an interactive, unified view of historical sales performance across three years (2009–2011) to answer key strategic questions:
@@ -153,15 +156,18 @@ Clone this repository to your local machine:
 Bash
 
 git clone https://github.com/JahiduddinRasel/online-retail-powerbi.git
+
 Create a local directory: D:\For Practice Data\online_retail_II.
 Download raw datasets from UCI and place them into that directory.
 Open Online_Retail_Executive_Dashboard.pbix inside the pbix/ folder using Power BI Desktop.
 If data paths break: Go to Transform Data → select Raw_Retail → update the Source step folder path → click Close & Apply.
+
+
+
 👤 Author
 Jahiduddin Rasel
 Data Analyst | Power BI · Power Query · DAX · Data Architecture
-GitHub Profile
 
 ## 🏷️ Tags
 
-Power BI, DAX, Power Query, Data Modeling, Star Schema, Folder Connector, Retail Analytics, Time Intelligence, Executive Dashboard, Business Intelligence
+`Power BI` `DAX` `Power Query` `Data Modeling` `Star Schema` `Folder Connector` `Retail Analytics` `Time Intelligence` `Executive Dashboard` `Business Intelligence`
