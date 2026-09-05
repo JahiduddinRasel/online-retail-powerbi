@@ -85,14 +85,22 @@ To optimize analytical query performance, the flat transactional data was modele
 
 ## 🔧 Power Query Transformation Steps
 
-### 1) Automated “Magic Folder” ingestion
+## 📂 Automated Folder Ingestion (Magic Folder — Excel Edition)
 
-The report points to a local directory (`D:Practice Data_retail_II`). Power Query combines, cleans, and loads any file added to this folder.
+This project uses a reusable Power Query **Folder Connector** pipeline to ingest multi-file, multi-sheet Excel data dynamically instead of relying on a single static file.
 
-| File type | Approach | Key step |
-| --- | --- | --- |
-| Excel (.xlsx) | Extract binary → expand only worksheet tables | `Excel.Workbook([Content], true)` then filter `Kind = "Sheet"` |
-|  |  |  |
+- Connects to a source directory via parameter `pFolderPath`
+- Keeps only valid Excel files (`.xlsx`, `.xls`, `.xlsb`)
+- Ignores hidden OS files and Excel temporary lock files (`~$`) created when a file is open
+- Skips empty or 0-byte corrupted files
+- Parses workbooks dynamically using `Excel.Workbook([Content], true)` with auto-promoted headers
+- Filters specifically for visible worksheets (`Kind = "Sheet"`, `Hidden <> true`), ignoring macro ranges or archived hidden tabs
+- Automatically combines all sheets across all Excel files into a single unified table
+
+### ⚠️ Important Requirement
+All Excel files and worksheets dropped into the folder must share the **same column headers and structure**. If a new file or sheet contains renamed or missing columns, the expand step will produce nulls or expansion errors.
+
+**Result:** Drop new monthly or annual Excel export files into the folder → click **Refresh** → dashboard updates automatically.
 
 ### 2) Fact and dimension separation (to avoid circular dependencies)
 
